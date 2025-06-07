@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Loan Calculator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        function getCompoundingValue(option) {
+            return {
+                "Annually": 1,
+                "Semi-Annually": 2,
+                "Quarterly": 4,
+                "Monthly": 12,
+                "Semi-Monthly": 24,
+                "Biweekly": 26,
+                "Weekly": 52,
+                "Daily": 365
+            }[option];
+        }
+
+        function calculateAmortizedLoan() {
+            let amount = parseFloat(document.getElementById("amortizedAmount").value);
+            let years = parseFloat(document.getElementById("amortizedTerm").value);
+            let rate = parseFloat(document.getElementById("amortizedRate").value) / 100;
+            let compound = getCompoundingValue(document.getElementById("amortizedCompound").value);
+            let months = years * 12;
+
+            let monthlyRate = rate / compound;
+            let payment = (amount * monthlyRate) / (1 - Math.pow(1 + monthlyRate, -months));
+            let totalPayment = payment * months;
+            let totalInterest = totalPayment - amount;
+
+            document.getElementById("amortizedPayment").innerText = `$${payment.toFixed(2)}`;
+            document.getElementById("amortizedTotal").innerText = `$${totalPayment.toFixed(2)}`;
+            document.getElementById("amortizedInterest").innerText = `$${totalInterest.toFixed(2)}`;
+
+            updateChart(amortizedChart, amount, totalInterest);
+        }
+
+        function calculateDeferredLoan() {
+            let amount = parseFloat(document.getElementById("deferredAmount").value);
+            let years = parseFloat(document.getElementById("deferredTerm").value);
+            let rate = parseFloat(document.getElementById("deferredRate").value) / 100;
+            let compound = getCompoundingValue(document.getElementById("deferredCompound").value);
+
+            let finalAmount = amount * Math.pow(1 + rate / compound, compound * years);
+            let interest = finalAmount - amount;
+
+            document.getElementById("deferredMaturity").innerText = `$${finalAmount.toFixed(2)}`;
+            document.getElementById("deferredInterest").innerText = `$${interest.toFixed(2)}`;
+
+            updateChart(deferredChart, amount, interest);
+        }
+
+        function calculateBondLoan() {
+            let futureValue = parseFloat(document.getElementById("bondAmount").value);
+            let years = parseFloat(document.getElementById("bondTerm").value);
+            let rate = parseFloat(document.getElementById("bondRate").value) / 100;
+            let compound = getCompoundingValue(document.getElementById("bondCompound").value);
+
+            let presentValue = futureValue / Math.pow(1 + rate / compound, compound * years);
+            let interestSaved = futureValue - presentValue;
+
+            document.getElementById("bondPresentValue").innerText = `$${presentValue.toFixed(2)}`;
+
+            updateChart(bondChart, presentValue, interestSaved);
+        }
+
+        function updateChart(chart, principal, interest) {
+            chart.data.datasets[0].data = [principal, interest];
+            chart.update();
+        }
+
+        window.onload = function () {
+            let ctx1 = document.getElementById('amortizedChart').getContext('2d');
+            let ctx2 = document.getElementById('deferredChart').getContext('2d');
+            let ctx3 = document.getElementById('bondChart').getContext('2d');
+
+            window.amortizedChart = new Chart(ctx1, {
+                type: 'pie',
+                data: {
+                    labels: ['Principal', 'Interest'],
+                    datasets: [{ data: [100, 0], backgroundColor: ['#4CAF50', '#FFC107'] }]
+                }
+            });
+
+            window.deferredChart = new Chart(ctx2, {
+                type: 'pie',
+                data: {
+                    labels: ['Principal', 'Interest'],
+                    datasets: [{ data: [100, 0], backgroundColor: ['#4CAF50', '#FFC107'] }]
+                }
+            });
+
+            window.bondChart = new Chart(ctx3, {
+                type: 'pie',
+                data: {
+                    labels: ['Present Value', 'Interest Saved'],
+                    datasets: [{ data: [100, 0], backgroundColor: ['#4CAF50', '#FFC107'] }]
+                }
+            });
+        };
+    </script>
+</head>
+<body class="bg-light">
+    <div class="container mt-4">
+        <h2 class="text-center">Loan Calculator</h2>
+
+        <!-- Amortized Loan -->
+        <div class="card mb-4">
+            <div class="card-header bg-primary text-white">Amortized Loan</div>
+            <div class="card-body">
+                <input type="number" id="amortizedAmount" class="form-control mb-2" placeholder="Loan Amount">
+                <input type="number" id="amortizedTerm" class="form-control mb-2" placeholder="Loan Term (years)">
+                <input type="number" id="amortizedRate" class="form-control mb-2" placeholder="Interest Rate (%)">
+                <select id="amortizedCompound" class="form-control mb-2">
+                    <option>Annually</option><option>Semi-Annually</option>
+                    <option>Quarterly</option><option>Monthly</option>
+                    <option>Semi-Monthly</option><option>Biweekly</option>
+                    <option>Weekly</option><option>Daily</option>
+                </select>
+                <button class="btn btn-success" onclick="calculateAmortizedLoan()">Calculate</button>
+                <p>Monthly Payment: <strong id="amortizedPayment">$0.00</strong></p>
+                <canvas id="amortizedChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Deferred Payment Loan -->
+        <div class="card mb-4">
+            <div class="card-header bg-secondary text-white">Deferred Payment Loan</div>
+            <div class="card-body">
+                <input type="number" id="deferredAmount" class="form-control mb-2" placeholder="Loan Amount">
+                <input type="number" id="deferredTerm" class="form-control mb-2" placeholder="Loan Term (years)">
+                <input type="number" id="deferredRate" class="form-control mb-2" placeholder="Interest Rate (%)">
+                <select id="deferredCompound" class="form-control mb-2">
+                    <option>Annually</option><option>Semi-Annually</option>
+                    <option>Quarterly</option><option>Monthly</option>
+                    <option>Semi-Monthly</option><option>Biweekly</option>
+                    <option>Weekly</option><option>Daily</option>
+                </select>
+                <button class="btn btn-success" onclick="calculateDeferredLoan()">Calculate</button>
+                <canvas id="deferredChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Bond Loan -->
+        <div class="card mb-4">
+            <div class="card-header bg-dark text-white">Bond Loan</div>
+            <div class="card-body">
+                <input type="number" id="bondAmount" class="form-control mb-2" placeholder="Future Value">
+                <input type="number" id="bondTerm" class="form-control mb-2" placeholder="Loan Term (years)">
+                <input type="number" id="bondRate" class="form-control mb-2" placeholder="Interest Rate (%)">
+                <select id="bondCompound" class="form-control mb-2">
+                    <option>Annually</option><option>Semi-Annually</option>
+                    <option>Quarterly</option><option>Monthly</option>
+                    <option>Semi-Monthly</option><option>Biweekly</option>
+                    <option>Weekly</option><option>Daily</option>
+                </select>
+                <button class="btn btn-success" onclick="calculateBondLoan()">Calculate</button>
+                <canvas id="bondChart"></canvas>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
