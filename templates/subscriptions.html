@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subscription Plans - SIGMA Finance Academy</title>
+    <link rel="icon" type="image/x-icon" href="static/images/logo.ico">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1030;
+            background-color: #003566;
+        }
+
+        .hero {
+            background: url(' {{ url_for("static", filename="images/subscriptions_image.jpg") }} ') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .pricing-table {
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .table thead {
+            background-color: #003566;
+            color: white;
+        }
+
+        .btn-subscribe {
+            font-weight: bold;
+            border: none;
+            padding: 10px 20px;
+            width: 100%;
+        }
+
+        .btn-free {
+            background-color: gray;
+            color: white;
+        }
+
+        .btn-pro {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .btn-max {
+            background-color: #ffc107;
+            color: #003566;
+        }
+
+        .dark-mode {
+            background-color: #121212;
+            color: white;
+        }
+
+        .dark-mode .navbar {
+            background-color: #1e1e1e;
+        }
+
+        .dark-mode .table {
+            color: white;
+        }
+
+        .dark-mode .table thead {
+            background-color: #1e1e1e;
+        }
+
+        .dark-mode .btn-subscribe {
+            border: 1px solid white;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">SIGMA Finance Academy</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="/finance_gpt">FinanceGPT</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/about_us">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/subscriptions">Subscriptions</a></li>
+                    <li class="nav-item">
+                        <button id="toggleMode" class="btn btn-warning">Dark/Light Mode</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Choose Your Subscription Plan</h1>
+            <p>Pick a plan that best suits your financial learning journey.</p>
+        </div>
+    </section>
+
+    <!-- Pricing Table -->
+    <div class="container my-5">
+        <div class="pricing-table">
+            <h2 class="text-center mb-4">Subscription Plans</h2>
+            <table class="table table-bordered text-center">
+                <thead>
+                    <tr>
+                        <th>Features</th>
+                        <th>Free</th>
+                        <th>Pro</th>
+                        <th>Max</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Basic Financial Courses</td>
+                        <td>✔️</td>
+                        <td>✔️</td>
+                        <td>✔️</td>
+                    </tr>
+                    <tr>
+                        <td>Advanced Finance Calculators</td>
+                        <td>✔️</td>
+                        <td>✔️</td>
+                        <td>✔️</td>
+                    </tr>
+                    <tr>
+                        <td>Advanced Investment Strategies</td>
+                        <td>❌</td>
+                        <td>✔️</td>
+                        <td>✔️</td>
+                    </tr>
+                    <tr>
+                        <td>1-on-1 Financial Coaching</td>
+                        <td>❌</td>
+                        <td>❌</td>
+                        <td>✔️</td>
+                    </tr>
+                    <tr>
+                        <td>Exclusive Webinars & Events</td>
+                        <td>❌</td>
+                        <td>✔️</td>
+                        <td>✔️</td>
+                    </tr>
+                    <tr>
+                        <td>Personalized Financial Reports</td>
+                        <td>❌</td>
+                        <td>✔️</td>
+                        <td>✔️</td>
+                    </tr>
+                    <tr>
+                        <td>Direct Access to Experts</td>
+                        <td>❌</td>
+                        <td>❌</td>
+                        <td>✔️</td>
+                    </tr>
+                    <tr>
+                        <td>---</td>
+                        <td>---</td>
+                        <td>---</td>
+                        <td>---</td>
+                    </tr>
+                    <tr>
+                        <td>FinanceGPT Access</td>
+                        <td>5 messages per day</td>
+                        <td>8 messages per day</td>
+                        <td>12 messages per day</td>
+                    </tr>
+                    <tr>
+                        <td>Conversation Cloud Storage</td>
+                        <td>❌</td>
+                        <td>2 conversations per month</td>
+                        <td>5 conversations per month</td>
+                    </tr>
+                    <tr>
+                        <td>Beta-testing access</td>
+                        <td>❌</td>
+                        <td>✔️</td>
+                        <td>✔️</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Price</strong></td>
+                        <td><strong>Free</strong></td>
+                        <td><strong>$9.99/month</strong></td>
+                        <td><strong>$24.99/month</strong></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><button class="btn btn-subscribe btn-free" onclick="window.location.href='/signup'">Get Started</button></td>
+                        <td><button class="btn btn-subscribe btn-pro" onclick="window.location.href='/checkout-8asc93029fniencow92i23n93n290293n3-29393988283993269727'">Subscribe</button></td>
+                        <td><button class="btn btn-subscribe btn-max" onclick="window.location.href='/checkout-98f09fh034hf0hfn3j8h490jdjd90j30jd-90i29039239384292998'">Subscribe</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-4 bg-dark text-light text-center">
+        <div class="container">
+            <p>&copy; 2024 SIGMA Finance Academy. All rights reserved.</p>
+            <p>Contact us at <a href="mailto:info@financeacademy.com" class="text-light">info@financeacademy.com</a></p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Dark Mode Toggle with Persistence
+        const toggleModeButton = document.getElementById('toggleMode');
+        const body = document.body;
+
+        if (localStorage.getItem('theme') === 'dark') {
+            body.classList.add('dark-mode');
+        }
+
+        toggleModeButton.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            localStorage.setItem('theme', body.classList.contains('dark-mode') ? 'dark' : 'light');
+        });
+    </script>
+</body>
+
+</html>

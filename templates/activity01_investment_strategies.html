@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="SIGMA, SIGMA ELEVATORS, Sigma Elevators, Gigachad, Skibidy Rizz, Aashay Jain, Jaya Avaaneesh Jayamanikandan">
+    <meta name="description" content="We the people of SIGMA financial Institutions belive that education paves the way for success in the financial world. Come, join our quest to educate the masses about finances and its life-changing properties">
+    <meta name="author" content="Jaya Avaaneesh Jayamanikandan">
+    <title>Course Video</title>
+    <link rel="icon" type="image/x-icon" href='{{ url_for("static", filename="images/logo.ico") }}'>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #003566;
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            background-color: #003566;
+            color: #ffc107;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h1 {
+            font-size: 1.8rem;
+        }
+
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .video-container {
+            width: 80%;
+            max-width: 800px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .question-container {
+            width: 80%;
+            max-width: 800px;
+            background-color: #1e1e1e;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .question-container h3 {
+            color: #ffc107;
+        }
+
+        .question-container .question {
+            margin-bottom: 15px;
+        }
+
+        footer {
+            background-color: #1e1e1e;
+            margin-top: auto;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .dark-mode {
+            background-color: #121212;
+            color: white;
+        }
+
+        .dark-mode footer {
+            background-color: #000;
+        }
+
+        .dark-mode .header {
+            background-color: #121212;
+        }
+
+        .dark-mode .video-container {
+            background-color: #242424;
+            color: white;
+        }
+
+        .dark-mode .question-container {
+            background-color: #242424;
+            color: white;
+        }
+
+        .dark-mode .btn-warning {
+            background-color: #ffa000;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <h1>Course: Investment Strategies</h1>
+        <div>
+            <button class="btn btn-warning me-2" onclick="window.location.href='/dashboard'">Back to Dashboard</button>
+            <button id="toggleMode" class="btn btn-warning">Light/Dark Mode</button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Video Player -->
+        <div class="video-container">
+            <video id="courseVideo" width="100%">
+                <source src='{{ url_for("static", filename="videos/FinancesBasic360p.mp4") }}' type="video/mp4" data-quality="360p">
+                <source src='{{ url_for("static", filename="videos/FinancesBasic240p.mp4") }}' type="video/mp4" data-quality="240p">
+                <source src='{{ url_for("static", filename="videos/FinancesBasic144p.mp4") }}' type="video/mp4" data-quality="144p">
+                Your browser does not support the video tag.
+            </video>
+            <div class="mt-3">
+                <button class="btn btn-primary" onclick="playVideo()">Play</button>
+                <button class="btn btn-secondary" onclick="pauseVideo()">Pause</button>
+                <button class="btn btn-info" onclick="rewindVideo()">⏪ 15 Seconds</button>
+                <button class="btn btn-info" onclick="fastForwardVideo()">15 Seconds ⏩</button>
+                <button class="btn btn-info" onclick="window.location.href='/download_activity01_video'">Download Video ⬇️</button>
+                <button class="btn btn-success" onclick="toggleCaptions()">Toggle Captions</button>
+                <select id="playbackSpeed" class="form-select mt-3" style="width: 200px;" onchange="changePlaybackSpeed()">
+                    <option value="0.25">0.25x</option>
+                    <option value="0.5">0.5x</option>
+                    <option value="1" selected>1x</option>
+                    <option value="1.5">1.5x</option>
+                    <option value="2">2x</option>
+                </select>
+                <select id="videoQuality" class="form-select mt-3" style="width: 200px;" onchange="changeVideoQuality()">
+                    <option value="360p" selected>360p</option>
+                    <option value="240p">240p</option>
+                    <option value="144p">144p</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Questions -->
+        <div class="question-container">
+            <h3>Single-Choice Questions</h3>
+            <div class="question">
+                <p><strong>1. What is the first step of managing your finances?</strong></p>
+                <ul class="list-unstyled">
+                    <li><input type="radio" name="q1" id="q1a"> <label for="q1a">A. Budgeting</label></li>
+                    <li><input type="radio" name="q1" id="q1b"> <label for="q1b">B. Investing</label></li>
+                    <li><input type="radio" name="q1" id="q1c"> <label for="q1c">C. Trading</label></li>
+                </ul>
+            </div>
+            <div class="question">
+                <p><strong>2. How much percent of our income should we save?</strong></p>
+                <ul class="list-unstyled">
+                    <li><input type="radio" name="q2" id="q2a"> <label for="q2a">A. 15%</label></li>
+                    <li><input type="radio" name="q2" id="q2b"> <label for="q2b">B. 20%</label></li>
+                    <li><input type="radio" name="q2" id="q2c"> <label for="q2c">C. 25%</label></li>
+                </ul>
+            </div>
+            <div class="question">
+                <p><strong>3. What do we call the money that we set aside for unexpected spending?</strong></p>
+                <ul class="list-unstyled">
+                    <li><input type="radio" name="q3" id="q3a"> <label for="q3a">A. Emergency Funds</label></li>
+                    <li><input type="radio" name="q3" id="q3b"> <label for="q3b">B. Savings</label></li>
+                    <li><input type="radio" name="q3" id="q3c"> <label for="q3c">C. Salary</label></li>
+                </ul>
+            </div>
+            <div class="question">
+                <p><strong>4. How much emergency funds should we set aside?</strong></p>
+                <ul class="list-unstyled">
+                    <li><input type="radio" name="q4" id="q4a"> <label for="q4a">A. For 3-6 months</label></li>
+                    <li><input type="radio" name="q4" id="q4b"> <label for="q4b">B. For 1-2 months</label></li>
+                    <li><input type="radio" name="q4" id="q4c"> <label for="q4c">C. For 6-9 months</label></li>
+                </ul>
+            </div>
+            <div class="question">
+                <p><strong>5. What is the purpose of emergency funds?</strong></p>
+                <ul class="list-unstyled">
+                    <li><input type="radio" name="q5" id="q5a"> <label for="q5a">A. To cover unexpected costs (medical bills)</label></li>
+                    <li><input type="radio" name="q5" id="q5b"> <label for="q5b">B. To give you a peace of mind</label></li>
+                    <li><input type="radio" name="q5" id="q5c"> <label for="q5c">C. Both options A and B</label></li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <!-- Submit Button -->
+<button class="btn btn-warning mt-3" onclick="submitQuiz()">Submit</button>
+
+<!-- Result Display -->
+<div id="result" class="mt-3" style="display: none;">
+    <h3>Results:</h3>
+    <p id="score"></p>
+</div>
+
+<script>
+    function submitQuiz() {
+        const answers = {
+            q1: "q1a", // Budgeting
+            q2: "q2b", // 20%
+            q3: "q3a", // Emergency Funds
+            q4: "q4a", // 3-6 months
+            q5: "q5c"  // Both A and B
+        };
+
+        let score = 0;
+        for (let question in answers) {
+            const selectedAnswer = document.querySelector(`input[name="${question}"]:checked`);
+            const correctAnswerId = answers[question];
+
+            if (selectedAnswer) {
+                const label = document.querySelector(`label[for="${selectedAnswer.id}"]`);
+                if (selectedAnswer.id === correctAnswerId) {
+                    label.style.color = "lightgreen"; // ✅ Correct answer
+                    score++;
+                } else {
+                    label.style.color = "red"; // ❌ Incorrect answer
+                    // Highlight correct answer
+                    document.querySelector(`label[for="${correctAnswerId}"]`).style.color = "lightgreen";
+                }
+            } else {
+                // If no answer is selected, highlight the correct one
+                document.querySelector(`label[for="${correctAnswerId}"]`).style.color = "lightgreen";
+            }
+        }
+
+        // Show Score
+        const resultDiv = document.getElementById("result");
+        resultDiv.style.display = "block";
+        document.getElementById("score").innerText = `You scored ${score} / 5. You have successfully completed this exercise!`;
+    }
+</script>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 SIGMA Finance Academy. All rights reserved.</p>
+        <p>To schedule direct classes, please click <a href="/home_direct">here.</a></p>
+    </footer>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const video = document.getElementById('courseVideo');
+        const toggleModeButton = document.getElementById('toggleMode');
+
+        // Light/Dark Mode Toggle
+        toggleModeButton.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+        });
+
+        // Video Controls
+        function playVideo() {
+            video.play();
+        }
+
+        function pauseVideo() {
+            video.pause();
+        }
+
+        function rewindVideo() {
+            video.currentTime -= 15;
+        }
+
+        function fastForwardVideo() {
+            video.currentTime += 15;
+        }
+
+        function toggleCaptions() {
+            const tracks = video.textTracks;
+            if (tracks && tracks[0]) {
+                tracks[0].mode = tracks[0].mode === 'showing' ? 'hidden' : 'showing';
+            }
+        }
+
+        function changePlaybackSpeed() {
+            const speed = document.getElementById('playbackSpeed').value;
+            video.playbackRate = parseFloat(speed);
+        }
+
+        function changeVideoQuality() {
+            const quality = document.getElementById('videoQuality').value;
+            const sources = video.querySelectorAll('source');
+            for (const source of sources) {
+                if (source.getAttribute('data-quality') === quality) {
+                    video.src = source.getAttribute('src');
+                    video.load();
+                    video.play();
+                    break;
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

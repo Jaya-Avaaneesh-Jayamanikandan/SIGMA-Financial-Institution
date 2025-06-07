@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="SIGMA, SIGMA ELEVATORS, Sigma Elevators, Gigachad, Skibidy Rizz, Aashay Jain, Jaya Avaaneesh Jayamanikandan">
+    <meta name="description" content="We the people of SIGMA financial Institutions belive that education paves the way for success in the financial world. Come, join our quest to educate the masses about finances and its life-changing properties">
+    <meta name="author" content="Jaya Avaaneesh Jayamanikandan">
+    <title>FinanceGPT - Your AI Finance Advisor</title>
+    <link rel="icon" type="image/x-icon" href='{{ url_for("static", filename="images/logo.ico") }}'>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .hero-section {
+            background-color: #004085;
+            color: #fff;
+            padding: 100px 0;
+            text-align: center;
+        }
+        .feature-card {
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        .feature-card:hover {
+            transform: scale(1.05);
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        footer {
+            margin-top: auto;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">FinanceGPT</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about_us">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <h1 class="display-4">FinanceGPT</h1>
+            <p class="lead">Get personalized financial advice, optimize your investments, and achieve your financial goals with AI-powered insights.</p>
+            <button class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#learnMoreModal">Learn More</button>
+            <a href="/financegpt_login" class="btn btn-outline-light btn-lg">Get Started</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Features</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card feature-card p-3">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Personalized Advice</h5>
+                            <p class="card-text">Get custom recommendations tailored to your financial profile.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card feature-card p-3">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Investment Optimization</h5>
+                            <p class="card-text">Analyze your investments and get strategies for maximum returns.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card feature-card p-3">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Expense Tracking</h5>
+                            <p class="card-text">Track your spending habits and get actionable budgeting insights.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Modal -->
+    <div class="modal fade" id="learnMoreModal" tabindex="-1" aria-labelledby="learnMoreModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="learnMoreModalLabel">Behind the scenes</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>FinanceGPT<sup>©</sup> is made by our passionate and talented computer engineers. Build on top of Google's Gemini, it uses a more efficent node-based neural network algorithm for fast and performant mathematical calculations. Our neural network is upto 20%<sup>*</sup> efficient in large-scale mathematical calculations for finances. Our front-end network uses Google's Gemini due to its stability and security without comprimising availablility.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="bg-light py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Navigate the world of finances with ease...</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Question: Explain the concept of a credit card.</h5>
+                    <p>FinanceGPT: A credit card is a financial tool issued by banks or financial institutions that allows users to borrow funds up to a certain limit to make purchases or withdraw cash. Unlike debit cards, which draw money directly from a user's bank account, credit cards provide a line of credit that must be repaid, typically with interest if not paid in full by the due date.</p>
+                </div>
+                <div class="col-md-6">
+                    <h5>Question: What is the best investment with regards to the market situation?</h5>
+                    <p>FinanceGPT: Given the current market situation, several investment opportunities stand out. AI stocks, such as Nvidia and Palantir Technologies, have shown strong performance due to their innovative technologies and applications. Renewable energy stocks are promising, given the global shift towards sustainable energy. Pharmaceutical stocks are also expected to see growth due to the aging global population.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Contact Us</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <form>
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="name" placeholder="Enter your name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" placeholder="Enter your email">
+                        </div>
+                        <div class="mb-3">
+                            <label for="message" class="form-label">Message</label>
+                            <textarea class="form-control" id="message" rows="4" placeholder="Your message"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-3">
+        <p>&copy; 2024 FinanceGPT. All rights reserved.</p>
+        <p>To schedule direct classes, please click <a href="/home_direct">here.</a></p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

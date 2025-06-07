@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schedule a Class - SIGMA Financial Institution</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #e0a800;
+            --secondary-color: #ffc107;
+            --dark-color: #003566;
+        }
+
+        .navbar {
+            background-color: var(--dark-color);
+        }
+
+        .navbar-brand img {
+            height: 50px;
+        }
+
+        .navbar-nav .nav-link {
+            color: white !important;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: var(--secondary-color) !important;
+        }
+
+        .form-section {
+            background-color: #f8f9fa;
+            padding: 2rem 1rem;
+        }
+
+        .searchable-dropdown {
+            position: relative;
+        }
+
+        .searchable-dropdown input {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ced4da;
+            border-radius: 0.375rem;
+        }
+
+        .dropdown-options {
+            position: absolute;
+            width: 100%;
+            max-height: 200px;
+            overflow-y: auto;
+            background-color: #fff;
+            border: 1px solid #ced4da;
+            border-radius: 0.375rem;
+            z-index: 10;
+            display: none;
+        }
+
+        .dropdown-options div {
+            padding: 0.5rem;
+            cursor: pointer;
+        }
+
+        .dropdown-options div:hover {
+            background-color: #f1f1f1;
+        }
+
+        .footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 1rem 0;
+        }
+
+        .footer a {
+            color: var(--secondary-color);
+        }
+
+        .footer a:hover {
+            color: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <img src="assets/logo.png" alt="SIGMA Logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="/home_direct">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/location_direct">Locations</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Form Section -->
+    <section class="form-section">
+        <div class="container">
+            <h2 class="text-center mb-4">Schedule a Class</h2>
+            <form id="scheduleForm">
+                <div class="row">
+                    <!-- First Name -->
+                    <div class="col-md-6 mb-3">
+                        <label for="firstName" class="form-label">First Name:</label>
+                        <input type="text" class="form-control" id="firstName" placeholder="Enter your first name" required>
+                    </div>
+                    <!-- Last Name -->
+                    <div class="col-md-6 mb-3">
+                        <label for="lastName" class="form-label">Last Name:</label>
+                        <input type="text" class="form-control" id="lastName" placeholder="Enter your last name" required>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <!-- Nationality -->
+                    <div class="col-md-6 mb-3">
+                        <label for="nationality" class="form-label">Nationality:</label>
+                        <input type="text" class="form-control" id="nationality" placeholder="Enter your nationality" required>
+                    </div>
+                    <!-- Place of Class -->
+                    <div class="col-md-6 mb-3 searchable-dropdown">
+                        <label for="place" class="form-label">Place of Class:</label>
+                        <input type="text" id="place" class="form-control" placeholder="Search and select a location" autocomplete="off">
+                        <div class="dropdown-options" id="placeOptions">
+                            <!-- Locations will be populated dynamically -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <!-- Course -->
+                    <div class="col-md-6 mb-3">
+                        <label for="course" class="form-label">Course:</label>
+                        <select class="form-select" id="course" required>
+                            <option value="" selected disabled>---</option>
+                            <option value="finances_crash_course">Finances Crash Course</option>
+                            <option value="debt_management_course">Debt Management Course</option>
+                            <option value="stock_marketing_course">Stock Market Trading Course</option>
+                            <option value="budgeting_course">Budgeting Course</option>
+                        </select>
+                    </div>
+                    <!-- Time Slot -->
+                    <div class="col-md-6 mb-3">
+                        <label for="timeSlot" class="form-label">Time Slot:</label>
+                        <select class="form-select" id="timeSlot" required>
+                            <option value="" selected disabled>Select a time slot</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="btn btn-primary w-100">Schedule</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer text-center">
+        <div class="container">
+            <p>© 2025 SIGMA Financial Institution. All rights reserved.</p>
+            <ul class="list-unstyled d-flex justify-content-center mt-3">
+                <li class="mx-2"><a href="#">Facebook</a></li>
+                <li class="mx-2"><a href="#">Twitter</a></li>
+                <li class="mx-2"><a href="#">LinkedIn</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const placeInput = document.getElementById("place");
+            const placeOptions = document.getElementById("placeOptions");
+            const locations = [
+                "Anna Nagar", "Red Hills", "Royapuram", "Korukkupet", "Vyasarpadi", "Perambur", "Tondiarpet", "Tiruvottiyur", "Ennore", "Minjur", "Old Washermenpet", "Madhavaram", "Manali New Town", "Naravarikuppam", "Puzhal", "Moolakadai", "Kodungaiyur", "Madhavaram Milk Colony", "Mathur MMDA", "Surapet", "Parry's Corner", "Manali", "Vallalar Nagar", "New Washermenpet", "Mannadi", "George Town", "Basin Bridge", "Park Town", "Periamet", "Pattalam", "Pulianthope", "M.K.B. Nagar", "Selavoyal", "Manjambakkam", "Ponniammanmedu", "Sembiam", "T.V.K. Nagar", "ICF Colony", "Villivakkam", "Lakshmipuram", "Kathivakkam", "Kathirvedu", "Erukanchery", "Broadway", "Jamalia", "Kosapet", "Otteri", "Porur", "Kovur", "Aminjikarai", "Ayanavaram", "Ambattur", "Kundrathur", "Defence Colony", "Mannurpet", "Padi", "Ayappakkam", "Korattur", "Mogappair", "Arumbakkam", "Avadi", "Pudur", "Maduravoyal", "Koyambedu", "Ashok Nagar", "K.K. Nagar", "Karambakkam", "Vadapalani", "Saligramam", "Virugambakkam", "Alwarthirunagar", "Valasaravakkam", "Thirunindravur", "Pattabiram", "Thirumangalam", "Thirumullaivayal", "Thiruverkadu", "Nandambakkam", "Nerkundrum", "Nesapakkam", "Nolambur", "Ramapuram", "Mugalivakkam", "Mangadu", "M.G.R. Nagar", "M.G.R. Garden", "Alapakkam", "Poonamallee", "Mowlivakkam", "Gerugambakkam", "CMDA Colony", "Thirumazhisai", "Iyyapanthangal", "Sikkarayapuram", "Teynampet", "Thousand Lights", "Gopalapuram", "Mylapore", "Chromepet", "Egmore", "Chetpet", "Perungudi", "Sholinganallur", "Alandur", "Adambakkam", "Adyar", "Besant Nagar", "Triplicane", "T. Nagar", "Thiruvanmiyur", "Saidapet", "Guindy", "Madipakkam", "Nanganallur", "Velachery", "Taramani", "Pallikaranai", "Keelkattalai", "Kovilambakkam", "Thoraipakkam", "Neelankarai", "Injambakkam", "Hastinapuram", "Pallavaram", "Pozhichur", "Pammal", "Nagalkeni", "Tambaram", "Selaiyur", "Irumbuliyur", "Kadaperi", "Perungalathur", "Pazhavanthangal", "Peerkankaranai", "Mudichur", "Vandalur", "Kolappakkam", "Mambakkam", "Palavakkam", "Varadharajapuram", "Medavakkam", "West Mambalam", "Kottivakkam", "Pudupet", "Gummidipoondi", "Pazhaverkadu", "Ponneri", "Athipattu", "Sholavaram", "Minjur", "Red Hills", "Ennore", "Tiruvallur", "Kadambathur", "Arakkonam", "Tiruttani", "Tamaraipakkam", "Sriperumbudur", "Chembarambakkam", "Singaperumalkoil", "Maraimalai Nagar", "Urapakkam", "Guduvanchery", "Kanathur", "Uthandi", "Muthukadu", "Kelambakkam", "Kovalam", "Siruseri", "Manjakuppam", "Aluva", "Edappally", "Kadavanthra", "Kakkanad", "Kaloor", "Marine Drive", "Palarivattom", "Thrikkakara", "Ravipuram", "Pala", "West Hill", "Pallakad", "Thiruvananthapuram", "Kochi", "Kollam", "Kozhikode", "Kannur", "Alappuzha", "F-7", "F-8", "F-10", "G-6", "G-7", "G-8", "G-9", "G-10", "G-11", "E-7", "E-11", "D-12", "I-10", "H-13", "G-15", "B-17", "Ghauri Town", "Eighteen", "Top City", "Mumtaz City", "Dhaka"
+            ];
+
+            // Populate dropdown options dynamically
+            function populateOptions(filter = "") {
+                placeOptions.innerHTML = "";
+                const filteredLocations = locations.filter(location =>
+                    location.toLowerCase().includes(filter.toLowerCase())
+                );
+
+                filteredLocations.forEach(location => {
+                    const optionDiv = document.createElement("div");
+                    optionDiv.textContent = location;
+                    optionDiv.addEventListener("click", () => {
+                        placeInput.value = location;
+                        placeOptions.style.display = "none";
+                    });
+                    placeOptions.appendChild(optionDiv);
+                });
+
+                placeOptions.style.display = filteredLocations.length > 0 ? "block" : "none";
+            }
+
+            // Show filtered options on input
+            placeInput.addEventListener("input", () => {
+                populateOptions(placeInput.value);
+            });
+
+            // Hide dropdown when clicking outside
+            document.addEventListener("click", (e) => {
+                if (!placeInput.contains(e.target) && !placeOptions.contains(e.target)) {
+                    placeOptions.style.display = "none";
+                }
+            });
+
+            // Handle course and time slot interaction
+            const courseSelect = document.getElementById("course");
+            const timeSlotSelect = document.getElementById("timeSlot");
+            const timeSlots = {
+                finances_crash_course: ["9:00 AM - 10:00 AM", "11:00 AM - 12:00 PM", "2:00 PM - 3:00 PM"],
+                debt_management_course: ["10:00 AM - 11:00 AM", "1:00 PM - 2:00 PM", "3:00 PM - 4:00 PM"],
+                stock_marketing_course: ["8:00 AM - 9:00 AM", "12:00 PM - 1:00 PM", "4:00 PM - 5:00 PM"],
+                budgeting_course: ["10:00 AM - 11:00 AM", "1:00 PM - 2:00 PM", "3:00 PM - 4:00 PM"]
+
+            };
+
+            courseSelect.addEventListener("change", () => {
+                const selectedCourse = courseSelect.value;
+                timeSlotSelect.innerHTML = '<option value="" selected disabled>Select a time slot</option>';
+                if (timeSlots[selectedCourse]) {
+                    timeSlots[selectedCourse].forEach(slot => {
+                        const option = document.createElement("option");
+                        option.value = slot;
+                        option.textContent = slot;
+                        timeSlotSelect.appendChild(option);
+                    });
+                }
+            });
+
+            // Handle form submission
+            const scheduleForm = document.getElementById("scheduleForm");
+            scheduleForm.addEventListener("submit", (event) => {
+                event.preventDefault();
+                alert("Class has been successfully scheduled!");
+                scheduleForm.reset();
+            });
+
+            // Initialize options on load
+            populateOptions();
+        });
+    </script>
+</body>
+</html>

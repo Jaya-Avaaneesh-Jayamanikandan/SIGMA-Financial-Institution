@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="SIGMA, SIGMA ELEVATORS, Sigma Elevators, Gigachad, Skibidy Rizz, Aashay Jain, Jaya Avaaneesh Jayamanikandan">
+    <meta name="description" content="We the people of SIGMA financial Institutions belive that education paves the way for success in the financial world. Come, join our quest to educate the masses about finances and its life-changing properties">
+    <meta name="author" content="Jaya Avaaneesh Jayamanikandan">
+    <title>User Dashboard</title>
+    <link rel="icon" type="image/x-icon" href='{{ url_for("static", filename="images/logo.ico") }}'>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #003566;
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Dashboard Header */
+        .dashboard-header {
+            background-color: #003566;
+            color: #ffc107;
+            padding: 20px;
+            position: relative;
+            text-align: center;
+        }
+
+        .dashboard-header h1 {
+            font-size: 2.5rem;
+        }
+
+        .dashboard-header p {
+            font-size: 1.2rem;
+        }
+
+        /* Top Right Buttons */
+        .top-right-buttons {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+        }
+
+        .top-right-buttons button {
+            margin-left: 10px;
+        }
+
+        /* Card Styles */
+        .card {
+            background-color: #1e1e1e;
+            color: white;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .progress-bar {
+            background-color: #ffc107;
+        }
+
+        .btn-primary {
+            background-color: #ffc107;
+            color: #003566;
+            font-weight: bold;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #e0a800;
+        }
+
+        .btn-success {
+            background-color: #ffc107;
+            color: #003566;
+            font-weight: bold;
+            border: none;
+        }
+
+        .btn-success:hover {
+            background-color: #e0a800;
+        }
+
+        .btn-secondary {
+            background-color: #ffc107;
+            color: #003566;
+        }
+
+        .btn-secondary:hover {
+            background-color: #e0a800;
+        }
+
+        /* Section Titles */
+        h3 {
+            color: #ffc107;
+            border-bottom: 2px solid #ffc107;
+            display: inline-block;
+            padding-bottom: 5px;
+            margin-bottom: 20px;
+        }
+
+        footer {
+            background-color: #1e1e1e;
+            margin-top: auto;
+            padding: 10px;
+        }
+
+        /* Tip of the Day Section */
+        .tip-of-the-day {
+            background-color: #1e1e1e;
+            color: white;
+            padding: 20px;
+            margin-top: 30px;
+            border-radius: 10px;
+        }
+
+        .dark-mode {
+            background-color: #121212;
+            color: white;
+        }
+
+        .dark-mode footer {
+            background-color: #000;
+        }
+
+        .dark-mode .card {
+            background-color: #242424;
+            color: white;
+        }
+
+        .dark-mode .btn-primary,
+        .dark-mode .btn-success {
+            background-color: #ffa000;
+            color: white;
+        }
+
+        .dark-mode .btn-primary:hover,
+        .dark-mode .btn-success:hover {
+            background-color: #e59400;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Dashboard Header -->
+    <header class="dashboard-header">
+        <h1>Welcome Back!</h1>
+        <p>Track your progress and achieve your learning goals!</p>
+        <div class="top-right-buttons">
+            <button id="settingsButton" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#settingsModal">Settings</button>
+            <button id="logoutButton" class="btn btn-danger" onclick="window.location.href='/logout'">Log Out</button>
+            <button id="toggleMode" class="btn btn-warning">Light/Dark Mode</button>
+        </div>
+    </header>
+
+ <!-- Dashboard Content -->
+ <main class="container my-5">
+    <h2 class="mb-4">Your Resources</h2>
+
+    <!-- Ongoing Courses -->
+    <section>
+        <h3>Ongoing Courses</h3>
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Finances Crash Course</h5>
+                        <p class="card-text">Get a start on the dynamic world of finances with our host Aashay Jain!</p>
+                        <div class="progress mb-3">
+                            <div class="progress-bar" role="progressbar" style="width: 60%;" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">
+                                60% Completed
+                            </div>
+                        </div>
+                        <button class="btn btn-primary" onclick="window.location.href='/activity01_investment_strategies'">Continue Learning 📖</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Finished Courses -->
+    <section class="mt-5">
+        <h3>Finished Courses</h3>
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Financial Planning</h5>
+                        <p class="card-text">Plan for a secure financial future with personalized strategies.</p>
+                        <p class="text-success fw-bold">Completed ✅</p>
+                        <button class="btn btn-success" onclick="window.location.href='/course_certificate_crash_course'">View Certificate 📃</button>
+                        <button class="btn btn-secondary">Start Mastery 🧑‍🎓</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Finance Simulator -->
+    <section class="mt-5">
+        <h3>Financial Calculators</h3>
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Loan Calculator</h5>
+                        <p class="card-text">Use this calculator for calculating loan amount and intrest payments.</p>
+                        <button class="btn btn-primary" onclick="window.location.href='/loan_calculator'">Start Calculator 📱</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Finance Simulator -->
+    <section class="mt-5">
+        <h3>Useful Links</h3>
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Stock Market Training Simulator</h5>
+                        <p class="card-text">Learn and improve the skills of trading using this stock market simulator for practice.</p>
+                        <button class="btn btn-primary" onclick="window.location.href='https://simul8or.com/'">Start Simulator 🔗</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tip of the Day -->
+    <section class="tip-of-the-day mt-5">
+        <h3>Tip of the Day</h3>
+        <p id="dailyTip">"Save at least 20% of your income every month to build a healthy financial cushion."</p>
+    </section>
+</main>
+
+    <!-- Footer -->
+    <footer class="text-light text-center">
+        <p>Contact us at <a href="mailto:info@financeacademy.com" class="text-warning">info@financeacademy.com</a></p>
+        <p>&copy; 2024 SIGMA Finance Academy. All rights reserved.</p>
+        <p>To schedule direct classes, please click <a href="/home_direct">here.</a></p>
+    </footer>
+
+    <!-- Settings Modal -->
+    <div class="modal fade" id="settingsModal" tabindex="-1" aria-labelledby="settingsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="settingsModalLabel">User Settings</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <ul class="nav nav-tabs" id="settingsTabs" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="true">Profile</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="stats-tab" data-bs-toggle="tab" data-bs-target="#stats" type="button" role="tab" aria-controls="stats" aria-selected="false">Statistics</button>
+                        </li>
+                    </ul>
+                    <div class="tab-content mt-3" id="settingsTabsContent">
+                        <!-- Profile Tab -->
+                        <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                            <form id="profileForm">
+                                <!-- Gender -->
+                                <div class="mb-3">
+                                    <label for="gender" class="form-label">Gender</label>
+                                    <select class="form-select" id="gender" required>
+                                        <option value="Abinary">Abinary</option>
+                                        <option value="Agender">Agender</option>
+                                        <option value="Agenderfluid">Agenderfluid</option>
+                                        <option value="Agenderflux">Agenderflux</option>
+                                        <option value="Genderblank">Genderblank</option>
+                                        <option value="Genderfree">Genderfree</option>
+                                        <option value="Polyagender">Polyagender</option>
+                                        <option value="Ambigender">Ambigender</option>
+                                        <option value="Androgyne">Androgyne</option>
+                                        <option value="Androgynous">Androgynous</option>
+                                        <option value="Aporagender">Aporagender</option>
+                                        <option value="Autigender">Autigender</option>
+                                        <option value="Bakla">Bakla</option>
+                                        <option value="Bigender">Bigender</option>
+                                        <option value="Binary">Binary</option>
+                                        <option value="Bissu">Bissu</option>
+                                        <option value="Butch">Butch</option>
+                                        <option value="Calabai">Calabai</option>
+                                        <option value="Calalai">Calalai</option>
+                                        <option value="Cis">Cis</option>
+                                        <option value="Cisgender">Cisgender</option>
+                                        <option value="Cis female">Cis female</option>
+                                        <option value="Cis male">Cis male</option>
+                                        <option value="Cis man">Cis man</option>
+                                        <option value="Cis woman">Cis woman</option>
+                                        <option value="Demi-boy">Demi-boy</option>
+                                        <option value="Demiflux">Demiflux</option>
+                                        <option value="Demigender">Demigender</option>
+                                        <option value="Demi-girl">Demi-girl</option>
+                                        <option value="Demi-guy">Demi-guy</option>
+                                        <option value="Demi-man">Demi-man</option>
+                                        <option value="Demi-woman">Demi-woman</option>
+                                        <option value="Dual gender">Dual gender</option>
+                                        <option value="Eunuch">Eunuch</option>
+                                        <option value="Fa'afafine">Fa'afafine</option>
+                                        <option value="Female">Female</option>
+                                        <option value="Femme">Femme</option>
+                                        <option value="FTM">FTM</option>
+                                        <option value="Gender bender">Gender bender</option>
+                                        <option value="Gender diverse">Gender diverse</option>
+                                        <option value="Gender gifted">Gender gifted</option>
+                                        <option value="Genderfae">Genderfae</option>
+                                        <option value="Genderfluid">Genderfluid</option>
+                                        <option value="Genderflux">Genderflux</option>
+                                        <option value="Genderfuck">Genderf*ck</option>
+                                        <option value="Genderless">Genderless</option>
+                                        <option value="Gender nonconforming">Gender nonconforming</option>
+                                        <option value="Genderqueer">Genderqueer</option>
+                                        <option value="Gender questioning">Gender questioning</option>
+                                        <option value="Gender variant">Gender variant</option>
+                                        <option value="Graygender">Graygender</option>
+                                        <option value="Hijra">Hijra</option>
+                                        <option value="Intergender">Intergender</option>
+                                        <option value="Intersex">Intersex</option>
+                                        <option value="Ipsogender">Ipsogender</option>
+                                        <option value="Kathoey">Kathoey</option>
+                                        <option value="Māhū">Māhū</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Male to female">Male to female</option>
+                                        <option value="Man">Man</option>
+                                        <option value="Man of trans experience">Man of trans experience</option>
+                                        <option value="Maverique">Maverique</option>
+                                        <option value="Meta-gender">Meta-gender</option>
+                                        <option value="MTF">MTF</option>
+                                        <option value="Multigender">Multigender</option>
+                                        <option value="Muxe">Muxe</option>
+                                        <option value="Neither">Neither</option>
+                                        <option value="Neurogender">Neurogender</option>
+                                        <option value="Neutrois">Neutrois</option>
+                                        <option value="Non-binary">Non-binary</option>
+                                        <option value="Omnigender">Omnigender</option>
+                                        <option value="Other">Other</option>
+                                        <option value="Pangender">Pangender</option>
+                                        <option value="Person of transgendered experience">Person of transgendered experience</option>
+                                        <option value="Polygender">Polygender</option>
+                                        <option value="Queer">Queer</option>
+                                        <option value="Sekhet">Sekhet</option>
+                                        <option value="Third gender">Third gender</option>
+                                        <option value="Trans">Trans</option>
+                                        <option value="Trans*">Trans*</option>
+                                        <option value="Trans female">Trans female</option>
+                                    </select>
+                                </div>
+                            
+                                <!-- Phone Number -->
+                                <div class="mb-3">
+                                    <label for="phone" class="form-label">Phone Number</label>
+                                    <input type="tel" class="form-control" id="phone" placeholder="Enter phone number" required>
+                                </div>
+                            
+                                <!-- Nationality -->
+                                <div class="mb-3">
+                                    <label for="nationality" class="form-label">Nationality</label>
+                                    <input type="text" class="form-control" id="nationality" placeholder="Enter nationality" required>
+                                </div>
+                            
+                                <!-- Address -->
+                                <div class="mb-3">
+                                    <label for="address" class="form-label">Address</label>
+                                    <input type="text" class="form-control" id="address" placeholder="Enter address" required>
+                                </div>
+                            
+                                <!-- Credit/Debit Card Information -->
+                                <div class="mb-3">
+                                    <label for="cardNumber" class="form-label">Card Number</label>
+                                    <input type="text" class="form-control" id="cardNumber" placeholder="Enter Card Number" maxlength="19" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="cardCVV" class="form-label">CVV</label>
+                                    <input type="text" class="form-control" id="cardCVV" placeholder="Enter CVV" maxlength="3" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="cardExpiry" class="form-label">Expiry Date</label>
+                                    <input type="month" class="form-control" id="cardExpiry" placeholder="Card Expiry Date" required>
+                                </div>
+                            
+                                <!-- Save Changes Button -->
+                                <button type="submit" class="btn btn-primary">Save Changes</button>
+                            </form>
+                            
+                        </div>
+                        <!-- Statistics Tab -->
+                        <div class="tab-pane fade" id="stats" role="tabpanel" aria-labelledby="stats-tab">
+                            <p><strong>Finished Courses:</strong> 5</p>
+                            <p><strong>Total Time Spent:</strong> 120 hours</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("profileForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent form from refreshing the page
+    
+            // Collect form data
+            let profileData = {
+                gender: document.getElementById("gender").value,
+                phone: document.getElementById("phone").value,
+                nationality: document.getElementById("nationality").value,
+                address: document.getElementById("address").value,
+                cardNumber: document.getElementById("cardNumber").value,
+                cardCVV: document.getElementById("cardCVV").value,
+                cardExpiry: document.getElementById("cardExpiry").value
+            };
+    
+            // Send data to Flask backend
+            fetch("/update_profile", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(profileData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);  // Show success message
+            })
+            .catch(error => console.error("Error:", error));
+        });
+    </script>    
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Light/Dark Mode Toggle
+        const toggleModeButton = document.getElementById('toggleMode');
+        toggleModeButton.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+        });
+
+         // Tip of the Day Logic
+         const tips = [
+            "Create a Budget: Track your income and expenses to understand where your money is going. This helps in identifying areas where you can cut back and save.",
+            "Build an Emergency Fund: Start small, even if it's just a few dollars a week. Having a safety net can prevent you from falling into debt during unexpected expenses.",
+            "Avoid Debt: Try to avoid high-interest loans and credit cards. If you must borrow, look for low-interest options and have a clear repayment plan.",
+            "Save Regularly: Even small amounts add up over time. Set aside a portion of your income for savings, no matter how little it may seem.",
+            "Invest in Education: Education can open doors to better job opportunities. Look for free or low-cost educational resources and training programs.",
+            "Use Public Resources: Take advantage of public services and resources like libraries, community centers, and food banks to reduce your expenses.",
+            "Shop Smart: Look for discounts, use coupons, and buy in bulk when possible. Compare prices and shop around to get the best deals.",
+            "Increase Your Income: Consider side jobs or freelance work to supplement your income. Skills like tutoring, writing, or even handyman services can bring in extra money.",
+            "Stay Informed: Keep yourself updated on financial news and tips. Knowledge is power when it comes to managing your finances.",
+            "While Investing: Start Early: The earlier you start investing, the more time your money has to grow. Compound interest can significantly increase your returns over time.",
+            "While Investing: Diversify Your Portfolio: Don't put all your eggs in one basket. Spread your investments across different asset classes like stocks, bonds, real estate, and mutual funds to reduce risk.",
+            "While Investing: Understand Your Risk Tolerance: Know how much risk you are comfortable with. Higher risk investments can offer higher returns, but they also come with greater potential for loss.",
+            "While Investing: Invest in What You Know: Stick to industries and companies you understand. This can help you make more informed decisions and avoid unnecessary risks.",
+            "While Investing: Regularly Review Your Investments: Keep an eye on your investments and review your portfolio periodically. This helps you stay on track with your financial goals and make necessary adjustments.",
+            "While Investing: Consider Low-Cost Index Funds: Index funds are a great way to invest in a broad market segment with lower fees compared to actively managed funds.",
+            "While Investing: Avoid Emotional Investing: Don't let emotions drive your investment decisions. Stick to your plan and avoid making impulsive moves based on market fluctuations.",
+            "While Traveling: Plan Ahead: Book flights and accommodations well in advance to get the best deals. Last-minute bookings can be expensive.",
+            "While Traveling: Travel During Off-Peak Seasons: Prices for flights, hotels, and attractions are usually lower during off-peak times. Plus, you'll avoid the crowds.",
+            "While Traveling: Use Budget Airlines: Look for low-cost carriers and be flexible with your travel dates to find the cheapest flights.",
+            "While Traveling: Stay in Hostels or Budget Accommodations while traveling: Hostels, guesthouses, and budget hotels can save you a lot of money. Consider staying in shared dorms or using platforms like Airbnb.",
+            "While Traveling: Look for Free Activities: Many cities offer free walking tours, museums, parks, and other attractions. Do some research to find free or low-cost activities.",
+            "While Traveling: Stay with Friends or Family: If you have friends or family in your destination, consider staying with them. It's a great way to save on accommodation costs."
+        ];
+
+        const dailyTip = document.getElementById('dailyTip');
+        const randomTip = tips[Math.floor(Math.random() * tips.length)];
+        dailyTip.innerText = randomTip;
+    </script>
+</body>
+
+</html>
