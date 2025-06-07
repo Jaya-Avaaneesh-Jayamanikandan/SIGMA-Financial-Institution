@@ -41,7 +41,7 @@ firebase_admin.initialize_app(cred, {
 print("✅ Firebase Realtime Database has been initialized!")
 
 # Initialize Flask Web API
-FIREBASE_WEB_API_KEY = "AIzaSyBhGjWT6tHtpnyY2aG6NJMOVN0vRsgoWz4"
+FIREBASE_WEB_API_KEY = "THIS_KEY_HAS_BEEN_REVOKED"
 print("Firebase Authentication WEB API initialized!")
 
 # ✅ Stronger Password Validation
